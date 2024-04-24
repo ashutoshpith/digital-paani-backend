@@ -1,10 +1,16 @@
-import { Document, FilterQuery, Model } from 'mongoose';
+import { Document, FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { BaseState } from './base-state.interface';
-
+import { ObjectId } from 'mongodb';
 export interface IBaseRepo {
   create(payload: BaseState): Promise<Document>;
   findOne(filter: FilterQuery<Document>): Promise<Document>;
   findMany();
+  update(
+    filter: FilterQuery<Document>,
+    update: UpdateQuery<Document>,
+  ): Promise<Document>;
+
+  delete(filter: FilterQuery<Document>): Promise<boolean>;
 }
 
 export abstract class BaseRepo<
@@ -15,6 +21,8 @@ export abstract class BaseRepo<
   constructor(protected model: Model<TDocument>) {}
 
   async create(payload: TPayload): Promise<TDocument> {
+    payload._id = new ObjectId();
+    payload.createdAt = new Date();
     return this.model.create(payload);
   }
 
@@ -23,4 +31,17 @@ export abstract class BaseRepo<
   }
 
   findMany() {}
+
+  async update(
+    filter: FilterQuery<TPayload>,
+    update: UpdateQuery<TDocument>,
+  ): Promise<TDocument> {
+    await this.model.updateOne(filter, update);
+    return this.findOne(filter);
+  }
+
+  async delete(filter: FilterQuery<TPayload>): Promise<boolean> {
+    await this.model.deleteOne(filter);
+    return true;
+  }
 }

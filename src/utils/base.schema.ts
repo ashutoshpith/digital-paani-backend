@@ -1,12 +1,13 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop } from '@nestjs/mongoose';
 import { BaseState } from './base-state.interface';
+import { ObjectId } from 'mongodb';
 
 @ObjectType()
 export abstract class BaseSchema implements BaseState {
-  @Field(() => ID, { nullable: true })
+  @Field(() => ID)
   @Prop()
-  id?: string;
+  _id?: ObjectId;
 
   @Field(() => Date, { nullable: true })
   @Prop({ type: Date })
