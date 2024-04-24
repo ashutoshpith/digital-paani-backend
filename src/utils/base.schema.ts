@@ -1,8 +1,9 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Prop } from '@nestjs/mongoose';
+import { BaseState } from './base-state.interface';
 
 @ObjectType()
-export abstract class BaseSchema {
+export abstract class BaseSchema implements BaseState {
   @Field(() => ID, { nullable: true })
   @Prop()
   id?: string;

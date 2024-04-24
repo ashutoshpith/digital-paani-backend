@@ -10,7 +10,7 @@ export class Author {
   name: string;
 
   @Field()
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true })
   email: string;
 }
 

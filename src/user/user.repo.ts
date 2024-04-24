@@ -1,20 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './user.schema';
+import { User, UserDocument } from './user.schema';
 import { Model } from 'mongoose';
-import { SignupDto } from './signup.dto';
+import { BaseRepo } from 'src/utils/base.repo';
 
 @Injectable()
-export class UserRepo {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
-
-  async create(payload: SignupDto): Promise<User> {
-    return await this.userModel.create(payload);
-  }
-
-  async findUserByEmail(email: string): Promise<User> {
-    return this.userModel.findOne({
-      email,
-    });
+export class UserRepo extends BaseRepo<UserDocument, User> {
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
+    super(userModel);
   }
 }

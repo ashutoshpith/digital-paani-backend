@@ -23,7 +23,9 @@ export class UserService {
   }
 
   async checkLoginUser(payload: LoginDto): Promise<string> {
-    const hasUser = await this.userRepo.findUserByEmail(payload.email);
+    const hasUser = await this.userRepo.findOne({
+      email: payload.email,
+    });
     if (!hasUser) {
       throw new NotFoundException('User Email Not Found');
     }
