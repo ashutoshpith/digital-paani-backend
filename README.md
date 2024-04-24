@@ -100,7 +100,7 @@ to check graphql Server Running With Graphql Playground
 
 ## Stay in touch
 
-- Author - [Ashutosh Singh](https://kamilmysliwiec.com)
+- Author - [Ashutosh Singh](https://ashutoshpith.com)
 - Website - [https://ashutoshpith.com](https://ashutoshpith.com/)
 - LinkedIn - [@ashutoshpith](https://www.linkedin.com/in/ashutoshpith/)
 
