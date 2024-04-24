@@ -1,14 +1,20 @@
-import { Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { SignupDto } from './signup.dto';
+import { UserService } from './user.service';
+import { User } from './user.schema';
+import { LoginDto } from './login.dto';
 
 @Resolver()
 export class UserResolver {
-  @Query(() => Boolean)
-  login() {
-    return true;
+  constructor(private readonly userService: UserService) {}
+
+  @Query(() => String)
+  login(@Args('payload') payload: LoginDto) {
+    return this.userService.checkLoginUser(payload);
   }
 
-  @Mutation(() => Boolean)
-  signUp() {
-    return true;
+  @Mutation(() => User)
+  signUp(@Args('payload') payload: SignupDto) {
+    return this.userService.createUser(payload);
   }
 }

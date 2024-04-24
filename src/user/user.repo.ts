@@ -8,7 +8,7 @@ import { SignupDto } from './signup.dto';
 export class UserRepo {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async createUser(payload: SignupDto): Promise<User> {
+  async create(payload: SignupDto): Promise<User> {
     return await this.userModel.create(payload);
   }
 

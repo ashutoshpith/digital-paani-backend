@@ -3,15 +3,15 @@ import { Prop } from '@nestjs/mongoose';
 
 @ObjectType()
 export abstract class BaseSchema {
-  @Field(() => ID)
+  @Field(() => ID, { nullable: true })
   @Prop()
   id: string;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   @Prop({ type: Date })
   createdAt: Date;
 
-  @Field(() => Date)
+  @Field(() => Date, { nullable: true })
   @Prop({ type: Date })
   updatedAt: Date;
 
