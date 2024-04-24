@@ -8,10 +8,14 @@ import { SignupDto } from './signup.dto';
 import { HashService } from 'src/utils/hash.service';
 import { User } from './user.schema';
 import { LoginDto } from './login.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepo: UserRepo) {}
+  constructor(
+    private readonly userRepo: UserRepo,
+    private jwtService: JwtService,
+  ) {}
 
   async createUser(signupDto: SignupDto): Promise<User> {
     signupDto.password = await HashService.hashValue(signupDto.password);
@@ -31,7 +35,12 @@ export class UserService {
     if (!hasPassword) {
       throw new BadRequestException('Password Not Match');
     }
-
-    return 'User Found';
+    const digestData = {
+      sub: hasUser.id,
+      email: hasUser.email,
+      name: hasUser.name,
+    };
+    const token = await this.jwtService.signAsync(digestData);
+    return token;
   }
 }
