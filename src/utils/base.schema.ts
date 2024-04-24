@@ -5,21 +5,21 @@ import { Prop } from '@nestjs/mongoose';
 export abstract class BaseSchema {
   @Field(() => ID, { nullable: true })
   @Prop()
-  id: string;
+  id?: string;
 
   @Field(() => Date, { nullable: true })
   @Prop({ type: Date })
-  createdAt: Date;
+  createdAt?: Date;
 
   @Field(() => Date, { nullable: true })
   @Prop({ type: Date })
-  updatedAt: Date;
+  updatedAt?: Date;
 
   @Field(() => Boolean)
   @Prop({ type: Boolean, default: false })
-  isDeleted: boolean;
+  isDeleted?: boolean;
 
   @Field(() => Boolean)
   @Prop({ type: Boolean, default: true })
-  isActive: boolean;
+  isActive?: boolean;
 }

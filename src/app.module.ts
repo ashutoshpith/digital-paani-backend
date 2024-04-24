@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
+import { BookModule } from './book/book.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AuthGuard } from './auth/auth.guard';
     }),
     AuthModule,
     UserModule,
+    BookModule,
   ],
   controllers: [],
   providers: [

@@ -15,11 +15,11 @@ export class User extends BaseSchema {
   email: string;
 
   @Prop({ required: true })
-  password: string;
+  password?: string;
 
   @Field({ nullable: true })
   @Prop()
-  mobile: string;
+  mobile?: string;
 }
 export type UserDocument = HydratedDocument<User>;
 
