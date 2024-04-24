@@ -9,17 +9,24 @@ import { UserRefDto } from 'src/user/user.ref';
 export class BookResolver {
   constructor(private readonly bookService: BookService) {}
 
-  @Query(() => Book)
+  @Query(() => Book, {
+    description: 'Get One Book With Valid Id ',
+  })
   async findOneBook(@Args('_id') _id: string) {
     return this.bookService.getOneBook(_id);
   }
 
-  @Query(() => [Book])
+  @Query(() => [Book], {
+    description:
+      'Filters Books By Providing Publishing Year or Author Name or Author Email',
+  })
   async findManyBooks(@Args('payload') payload: BookQuery) {
     return this.bookService.filterBooks(payload);
   }
 
-  @Mutation(() => Book)
+  @Mutation(() => Book, {
+    description: 'Create A Book with Author Data',
+  })
   async createBook(
     @Args('payload') payload: BookInputDto,
     @UserRef() userDto: UserRefDto,
@@ -27,7 +34,9 @@ export class BookResolver {
     return this.bookService.createBook(payload, userDto);
   }
 
-  @Mutation(() => Book)
+  @Mutation(() => Book, {
+    description: 'Update Book With Valid Token',
+  })
   async updateBook(
     @Args('payload') payload: UpdateBookInputDto,
     @UserRef() userDto: UserRefDto,
@@ -35,7 +44,9 @@ export class BookResolver {
     return this.bookService.updateBook(payload, userDto);
   }
 
-  @Mutation(() => Boolean)
+  @Mutation(() => Boolean, {
+    description: 'Delete The Book if in case not Needed',
+  })
   async deleteBook(@Args('_id') _id: string) {
     return this.bookService.deleteBook(_id);
   }

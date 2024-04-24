@@ -12,18 +12,24 @@ export class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @PublicGuard()
-  @Query(() => String)
+  @Query(() => String, {
+    description: 'Use to Get Token After providing correct credentials',
+  })
   login(@Args('payload') payload: LoginDto) {
     return this.userService.checkLoginUser(payload);
   }
 
   @PublicGuard()
-  @Mutation(() => User)
+  @Mutation(() => User, {
+    description: 'Use To Create Account In The System',
+  })
   signUp(@Args('payload') payload: SignupDto) {
     return this.userService.createUser(payload);
   }
 
-  @Query(() => String)
+  @Query(() => String, {
+    description: 'Use To Validate Eithere User And Token Working Fine Or Not',
+  })
   checkUser(@UserRef() userDto: UserRefDto) {
     console.log('userDto ', userDto.email, userDto.name);
     return 'hello';
