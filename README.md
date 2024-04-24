@@ -98,6 +98,14 @@ Open in browser
 [http://localhost:3000/graphql](http://localhost:3000/graphql)
 to check graphql Server Running With Graphql Playground
 
+## Screenshot for the working Endpoints for reference
+
+<img width="1509" alt="Screenshot 2024-04-25 at 5 10 52 AM" src="https://github.com/ashutoshpith/digital-paani-backend/assets/31169310/cbf4d46c-8816-4204-91e5-a7d3ff3deb35">
+<img width="1509" alt="Screenshot 2024-04-25 at 5 10 59 AM" src="https://github.com/ashutoshpith/digital-paani-backend/assets/31169310/802eed43-d2c9-4fcb-adad-a2c09a05d5c1">
+<img width="1509" alt="Screenshot 2024-04-25 at 5 10 35 AM" src="https://github.com/ashutoshpith/digital-paani-backend/assets/31169310/38ec96cf-02f7-483d-b8e5-e2e69f25f4c4">
+<img width="1509" alt="Screenshot 2024-04-25 at 5 10 17 AM" src="https://github.com/ashutoshpith/digital-paani-backend/assets/31169310/0b787f28-e773-4f7b-bf75-9be374f76ef3">
+<img width="1509" alt="Screenshot 2024-04-25 at 5 09 54 AM" src="https://github.com/ashutoshpith/digital-paani-backend/assets/31169310/30bc7214-67ea-4886-a049-a5814a457d42">
+
 ## Stay in touch
 
 - Author - [Ashutosh Singh](https://ashutoshpith.com)
