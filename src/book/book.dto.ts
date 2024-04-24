@@ -17,3 +17,15 @@ export class UpdateBookInputDto extends PartialType(BookInputDto) {
   @Field()
   _id: string;
 }
+
+@InputType('BookQueryInputDto')
+export class BookQuery {
+  @Field({ nullable: true })
+  publicationYear: string;
+
+  @Field(() => String, { nullable: true })
+  authorEmail: string;
+
+  @Field(() => String, { nullable: true })
+  authorName: string;
+}

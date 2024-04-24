@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { BookRepo } from './book.repo';
-import { BookInputDto, UpdateBookInputDto } from './book.dto';
+import { BookInputDto, BookQuery, UpdateBookInputDto } from './book.dto';
 import { Book } from './book.schema';
 import { UserRefDto } from 'src/user/user.ref';
 import { ObjectId } from 'mongodb';
@@ -43,5 +43,20 @@ export class BookService {
     return this.bookRepo.delete({
       _id,
     });
+  }
+
+  async filterBooks(payload: BookQuery) {
+    const req = {};
+    Object.keys(payload).forEach((key) => {
+      if (key === 'authorEmail') {
+        req['author.email'] = payload.authorEmail;
+      } else if (key === 'authorName') {
+        req['author.name'] = payload.authorName;
+      } else if (key === 'publicationYear') {
+        req['publicationYear'] = payload.publicationYear;
+      }
+    });
+
+    return this.bookRepo.findMany(req);
   }
 }

@@ -4,7 +4,7 @@ import { ObjectId } from 'mongodb';
 export interface IBaseRepo {
   create(payload: BaseState): Promise<Document>;
   findOne(filter: FilterQuery<Document>): Promise<Document>;
-  findMany();
+  findMany(filter: FilterQuery<Document>): Promise<Document[]>;
   update(
     filter: FilterQuery<Document>,
     update: UpdateQuery<Document>,
@@ -26,11 +26,13 @@ export abstract class BaseRepo<
     return this.model.create(payload);
   }
 
-  findOne(filter: FilterQuery<TPayload>): Promise<TDocument> {
+  async findOne(filter: FilterQuery<TPayload>): Promise<TDocument> {
     return this.model.findOne(filter);
   }
 
-  findMany() {}
+  async findMany(filter: FilterQuery<TDocument>) {
+    return this.model.find(filter);
+  }
 
   async update(
     filter: FilterQuery<TPayload>,

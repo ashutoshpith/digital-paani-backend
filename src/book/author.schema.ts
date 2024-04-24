@@ -5,11 +5,11 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @InputType('AuthorInputDto')
 @Schema()
 export class Author {
-  @Field()
+  @Field({ nullable: true })
   @Prop({ required: true })
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Prop({ required: true })
   email: string;
 }
