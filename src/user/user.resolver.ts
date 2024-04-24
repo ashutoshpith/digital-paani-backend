@@ -6,6 +6,8 @@ import { LoginDto } from './login.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { UseGuards } from '@nestjs/common';
 import { PublicGuard } from 'src/auth/public.guard';
+import { UserRef } from 'src/auth/user.decorator';
+import { UserRefDto } from './user.ref';
 
 @Resolver()
 export class UserResolver {
@@ -25,7 +27,8 @@ export class UserResolver {
 
   @UseGuards(AuthGuard)
   @Query(() => String)
-  checkUser() {
+  checkUser(@UserRef() userDto: UserRefDto) {
+    console.log('userDto ', userDto.email, userDto.name);
     return 'hello';
   }
 }
